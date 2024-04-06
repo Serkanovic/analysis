@@ -18,3 +18,34 @@ ggplot(
     color = "Species", shape = "Species"
   ) +
   scale_color_colorblind()
+
+#categorical variable
+ggplot(penguins, aes(x = species))+
+  geom_bar()
+
+ggplot(penguins, aes(y = species))+
+  geom_bar()
+
+#numerical variable
+ggplot(penguins, aes(x = body_mass_g))+
+  geom_histogram(binwidth = 200)
+
+#density plot
+ggplot(penguins, aes(x = body_mass_g))+
+  geom_density()
+
+#boxplot
+ggplot(penguins, aes(x = species, y = body_mass_g))+
+  geom_boxplot()
+
+#density plot
+ggplot(penguins, aes(x = body_mass_g, fill = species))+
+  geom_density(linewidth = 0.75)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))+
+  geom_point(aes(color = species, shape = species))+
+  facet_wrap(~island)
+
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))+
+  geom_point()
+ggsave(filename = "penguin-plot.png")
