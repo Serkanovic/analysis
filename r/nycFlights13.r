@@ -31,3 +31,27 @@ flights |>
 
 view(flights |>
   distinct(year,month,day))
+
+flights |>
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60,
+    .after = day
+  )
+
+
+flights |>
+  select(year,month,day)
+
+flights |>
+  filter(dest == "IAH") |>
+  mutate(speed = distance / air_time * 60) |>
+  select(year:day, dep_time, carrier, flight, speed) |>
+  arrange(desc(speed))
+
+flights |>
+  group_by(month) |>
+  summarize(
+    delay = mean(dep_delay, na.rm = TRUE),
+    n = n()
+  )
