@@ -1,28 +1,36 @@
 #include <stdio.h>
 
+#define NUM_TENTATIVAS 3
+
 int main(){
     printf("Jogo de adivinhacao\n");
-    int a = 55;
-    int tentativas = 3;
+    int escolhido = 55;
     //printf("Numero: %d\n", a);
     int valor;
 
-    for(int i = 1; i <=tentativas; i++){
-        printf("Tentativa %d de %d\n",i,tentativas);
+    for(int i = 1; i <= NUM_TENTATIVAS; i++){
+        printf("Tentativa %d de %d\n",i, NUM_TENTATIVAS);
         printf("Digite um valor: ");
         scanf("%d",&valor);
         printf("Valor inserido: %d\n",valor);
 
-        if(valor == a){
+        if (valor < 0) {
+            printf("Utilize um valor adequado.\n\n");
+            i--;
+
+            continue;
+        }
+
+        if(valor == escolhido){
             printf("Valor correto.\n");
             break;
         }
         else{
-            if(valor > a){
-                printf("O valor foi maior que o escolhido\n");
+            if(valor > escolhido){
+                printf("Tente um valor menor\n\n");
             }
             else{
-                printf("O valor foi menor que o escolhido\n");
+                printf("Tente um valor maior\n\n");
             }
         }
     }
