@@ -1,28 +1,27 @@
 #include <stdio.h>
 
-#define NUM_TENTATIVAS 3
+//#define NUM_TENTATIVAS 3
 
 int main(){
     printf("Jogo de adivinhacao\n");
     int escolhido = 55;
-    //printf("Numero: %d\n", a);
     int valor;
+    int tentativas = 1;
+    double pontos = 1000;
 
-    for(int i = 1; i <= NUM_TENTATIVAS; i++){
-        printf("Tentativa %d de %d\n",i, NUM_TENTATIVAS);
+    while(1){
+        printf("Tentativa %d\n", tentativas);
         printf("Digite um valor: ");
         scanf("%d",&valor);
         printf("Valor inserido: %d\n",valor);
 
         if (valor < 0) {
             printf("Utilize um valor adequado.\n\n");
-            i--;
-
             continue;
         }
 
         if(valor == escolhido){
-            printf("Valor correto.\n");
+            printf("Valor correto.\n\n");
             break;
         }
         else{
@@ -32,6 +31,12 @@ int main(){
             else{
                 printf("Tente um valor maior\n\n");
             }
+            tentativas++;
+
+            double pontosperdidos = (valor - escolhido) / 2.0;
+            pontos = pontos - pontosperdidos;
         }
     }
+    printf("Jogo encerrado.\nTentativas: %d\n", tentativas);
+    printf("Pontuacao final: %.2lf\n", pontos);
 }
