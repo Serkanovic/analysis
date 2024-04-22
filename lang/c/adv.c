@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 //#define NUM_TENTATIVAS 3
 
@@ -33,7 +34,7 @@ int main(){
             }
             tentativas++;
 
-            double pontosperdidos = (valor - escolhido) / 2.0;
+            double pontosperdidos = abs(valor - escolhido) / 2.0;
             pontos = pontos - pontosperdidos;
         }
     }
