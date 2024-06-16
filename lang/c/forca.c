@@ -1,6 +1,27 @@
 #include <stdio.h>
 #include <string.h>
 
+void chuta(char chutes[26], int* tentativas){
+    char chute;
+        scanf(" %c", &chute);
+
+        chutes[(*tentativas)] = chute;
+        (*tentativas)++;
+
+}
+
+int jachutou(char letra, char chutes[26], int tentativas){
+    int achou = 0;
+    for(int j = 0; j < tentativas; j++){
+        if(chutes[j] == letra) {
+            achou = 1;
+            break;
+        }
+    }
+
+    return achou;
+}
+
 int main(){
 
     char palavra[20];
@@ -15,13 +36,8 @@ int main(){
     do {
 
          for(int i = 0; i < strlen(palavra); i++) {
-             int achou = 0;
-                for(int j = 0; j < tentativas; j++){
-                    if(chutes[j] == palavra[i]) {
-                        achou = 1;
-                        break;
-                    }
-                }
+
+                int achou = jachutou(palavra[i], chutes, tentativas);
 
                 if (achou) {
                     printf("%c ", palavra[i]);
@@ -32,13 +48,10 @@ int main(){
          }
          printf("\n");
 
-        char chute;
-        scanf(" %c", &chute);
+         chuta(chutes, &tentativas);
 
-        chutes[tentativas] = chute;
-        tentativas++;
 
     } while (!acertou && !errou);
 
-
+    return 0;
 }
