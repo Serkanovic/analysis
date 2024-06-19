@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include "forca.h"
 
 char palavra[20];
 char chutes[26];
@@ -36,6 +37,7 @@ void palavraForca(){
             printf("_ ");
 
         }
+
     }
     printf("\n");
 }
@@ -44,10 +46,35 @@ void palavraEscolhida(){
     sprintf(palavra,"atomo");
 }
 
-int main(){
+int acertou(){
+    for(int i = 0; i < strlen(palavra); i++){
+        if(!jachutou(palavra[i])) {
+            return 0;
+        }
+    }
 
-    int acertou = 0;
-    int errou = 0;
+    return 1;
+}
+
+int enforcou(){
+    int erros = 0;
+    for(int i =0; i < tentativas;i++){
+        int existe = 0;
+        for(int j = 0; j < strlen(palavra); j++){
+
+            if (chutes[i] == palavra[j]){
+                existe = 1;
+                break;
+            }
+        }
+
+        if(!existe) erros ++;
+    }
+    return erros >=5;
+
+}
+
+int main(){
 
     palavraEscolhida();
     //printf("%s",palavra);
@@ -59,7 +86,12 @@ int main(){
         chuta();
 
 
-    } while (!acertou && !errou);
+    } while (!acertou() && !enforcou());
+
+    if (acertou() == 1) {
+    printf("%s", palavra);
+
+    }
 
     return 0;
 }
