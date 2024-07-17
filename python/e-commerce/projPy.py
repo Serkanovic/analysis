@@ -27,8 +27,21 @@ print(df["category"].values_counts())
 print(df.info())
 print(df.columns)
 
-
 sns.histplot(data = df, x = "sales_month_1")
+plt.show()
+
+#x = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"]
+x = ["Jan", "Fev", "Mar", "Abr"]
+y = [df["sales_month_1"].sum(),
+     df["sales_month_2"].sum(),
+     df["sales_month_3"].sum(),
+     df["sales_month_4"].sum()]
+
+
+plt.figure(figsize = (10,5))
+plt.plot(x,y)
+plt.xlabel("Meses")
+plt.ylabel("Somatório de Vendas no Mês")
 plt.show()
 
 sns.barplot(data = df, x  = "price", y = "category", color = "seagreen")
