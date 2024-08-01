@@ -19,3 +19,25 @@ ggplot(data = df) +
 
 ggplot(data = df, mapping = aes(x = cut, y = table)) +
   geom_boxplot()
+
+
+df %>%
+  select(carat,depth,table)
+
+
+df %>%
+  filter(cut == "Ideal" & depth > 60)
+
+
+df %>%
+  select(carat,depth, table,cut) %>%
+  filter(cut %in% c('Ideal','Premium') & carat <= .30)
+
+
+df %>%
+  filter(price > 1000) %>%
+  arrange(desc(carat))
+
+df %>%
+  filter(color == "J") %>%
+  count(cut, sort = TRUE)
